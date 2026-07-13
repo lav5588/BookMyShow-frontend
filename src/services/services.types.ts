@@ -1,0 +1,366 @@
+export type SignupRequest = {
+    /**
+     * Full name of the user.
+     */
+    name: string;
+
+    /**
+     * Optional phone number of the user.
+     */
+    phone_number?: string;
+
+    /**
+     * Email address of the user.
+     */
+    email: string;
+
+    /**
+     * Optional profile picture file uploaded by the user.
+     */
+    profile_pic?: File;
+
+    /**
+     * Password chosen by the user.
+     */
+    password: string;
+};
+
+export type SignupResponse = {
+    /**
+     * Unique identifier of the user.
+     */
+    id: number;
+
+    /**
+     * Full name of the user.
+     */
+    name: string;
+
+    /**
+     * Phone number of the user.
+     */
+    phone_number: string;
+
+    /**
+     * Email address of the user.
+     */
+    email: string;
+
+    /**
+     * URL of the user's profile picture.
+     */
+    profile_pic: string;
+
+    /**
+     * Access token issued after registration.
+     */
+    access: string;
+};
+
+export type LoginRequest = {
+    /**
+     * Email address of the user.
+     */
+    email: string;
+
+    /**
+     * Password of the user.
+     */
+    password: string;
+};
+
+export type LoginResponse = {
+    /**
+     * Access token issued after authentication.
+     */
+    access: string;
+};
+
+export type Language = {
+    /**
+     * unique identifier of language
+     */
+    id: number;
+    /**
+     * name of the language
+     */
+    language: string;
+};
+
+export type Genre = {
+    /**
+     * unique identifier of genre
+     */
+    id: number;
+    /**
+     * name of the genre
+     */
+    genre: string;
+};
+
+export type Movie = {
+    /**
+     * unique identifier of the movie
+     */
+    id: number;
+
+    /**
+     * name of the movie
+     */
+    name: string;
+
+    /**
+     * language in which movies is available
+     */
+    languages: Language[];
+
+    /**
+     * list of genres of the movie
+     */
+    genres: Genre[];
+
+    /**
+     * About the movie
+     */
+    description: string;
+
+    /**
+     * time duration of the movie
+     */
+    duration: string;
+
+    /**
+     * slug for uniq url of the movie
+     */
+    slug: string;
+
+    /**
+     * date on which movies released
+     */
+    release_date: string;
+
+    /**
+     * Poster of the movie
+     */
+    movie_poster: string | null;
+};
+
+/**
+ * This is the response type of paginated data
+ */
+export type PaginatedQueryResponse<DataType> = {
+    /**
+     * total number of records in db
+     */
+    count: number;
+
+    /**
+     * url to next page including the query params
+     */
+    next: string | null;
+    /**
+     * url to previous page including query params
+     */
+    previous: string | null;
+
+    /**
+     * list of data
+     */
+    results: DataType[];
+};
+
+export type Location = {
+    /**
+     * unique identifier for the location
+     */
+    id: number;
+
+    /**
+     * name of the location
+     */
+    location: string;
+};
+
+export type Cinema = {
+    /**
+     * unique identifier of the cinema
+     */
+    id: number;
+
+    /**
+     * name of the cinema
+     */
+    name: string;
+
+    /**
+     *location of the cinema
+     */
+    location: Location;
+
+    /**
+     * total no of rows in the cinema
+     */
+    rows: number;
+
+    /**
+     * total number of seats per row in the cinema
+     */
+    seats_per_row: number;
+};
+
+export type Slot = {
+    /**
+     * unique identifier of slot
+     */
+    id: number;
+
+    /**
+     * date_time of slot
+     */
+    date_time: string;
+
+    /**
+     * price of the slot
+     */
+    price: string;
+
+    /**
+     * cinema id of the slot
+     */
+    cinema: number;
+
+    /**
+     * movie id of the slot
+     */
+    movie: number;
+
+    /**
+     * language id of the slot
+     */
+    language: number;
+};
+
+/**
+ * this is the response structure of slots by cinema api which is movie details along with slots field
+ */
+export type SlotByCinemaResponse = {
+    slots: Slot[];
+} & Movie;
+
+/**
+ * this is the response structure of slots by movie slug api which is cinema details along with slots field
+ */
+export type SlotsByMovieSlugResponse = {
+    slots: Slot[];
+} & Cinema;
+
+
+/**
+ * All the details related to a Slot
+ */
+export type SlotDetails = {
+    slot: Slot;
+    cinema: Cinema;
+    movie: Movie;
+    booked_seats: {
+        slot: number;
+        row_number: number;
+        seat_number: number;
+        status: 'BOOKED' | 'PENDING';
+        id: number;
+    }[];
+};
+
+type Seat = {
+    row_number: number;
+    seat_number: number;
+};
+
+export type SeatBookingRequest = {
+    slot_id: number;
+    seats: Seat[];
+};
+
+export type UpdateProfileRequest = {
+    /**
+     * Full name of the user.
+     */
+    name?: string;
+
+    /**
+     * Optional phone number of the user.
+     */
+    phone_number?: string;
+
+    /**
+     * Email address of the user.
+     */
+    email?: string;
+
+    /**
+     * Optional profile picture file uploaded by the user.
+     */
+    profile_pic?: File;
+};
+
+export type Ticket = {
+    /**
+     * id of the slot in which ticket is booked
+     */
+    slot: number;
+
+    /**
+     * row_number of the Seat
+     */
+    row_number: number;
+
+    /**
+     * Seat Number in a particular row
+     */
+    seat_number: number;
+
+    /**
+     * id of the user
+     */
+    user: number;
+
+    /**
+     * status of ticket
+     */
+    status: 'BOOKED' | 'PENDING' | 'CANCELLED';
+
+    /**
+     * id of ticket
+     */
+    id: number;
+
+    /**
+     * Time on which ticket is booked
+     */
+    created_at: string;
+
+    /**
+     * language of the movie
+     */
+    language: string;
+
+    /**
+     * name of the movie
+     */
+    movie: string;
+
+    /**
+     * Name of the cinema in which ticket is booked
+     */
+    cinema_name: string;
+
+    /**
+     * location of the cinema
+     */
+    cinema_location: string;
+
+    /**
+     * Will be the date and time of the Show
+     */
+    show_time: string;
+};

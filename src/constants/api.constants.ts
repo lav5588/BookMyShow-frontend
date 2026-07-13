@@ -1,0 +1,142 @@
+/**
+ * API_ROUTES
+ *
+ * Centralized collection of backend API endpoint paths used throughout the application.
+ * These routes are grouped by feature domain for better organization and maintainability.
+ *
+ * Declared as const to ensure strict literal typing and prevent accidental modification.
+ */
+export const API_ROUTES = {
+    /**
+     * Routes related to user authentication and profile management.
+     */
+    USERS: {
+        /**
+         * Endpoint for registering a new user account.
+         */
+        REGISTER: '/users/register/',
+
+        /**
+         * Endpoint for user login authentication.
+         */
+        LOGIN: '/users/login/',
+
+        /**
+         * Endpoint for logging out the currently authenticated user.
+         */
+        LOGOUT: '/users/logout/',
+
+        /**
+         * Endpoint for refreshing an expired authentication token.
+         */
+        REFRESH_TOKEN: '/users/refresh/',
+
+        /**
+         * Endpoint for retrieving  the current user's profile information.
+         */
+        PROFILE: '/users/profile/',
+
+        /**
+         * Endpoint to update the profile
+         */
+        UPDATE_PROFILE: '/users/update-profile/',
+    },
+
+    /**
+     * Routes related to movie data and metadata.
+     */
+    MOVIES: {
+        /**
+         * Endpoint for retrieving a list of all movies.
+         */
+        LIST: '/movies/',
+
+        /**
++         * Endpoint for a specific movie. Append the slug and a trailing slash.
++         *
++         * @example ${API_ROUTES.MOVIES.MOVIE}${slug}/
++         */
+        MOVIE: '/movies/',
+
+        /**
+         * Endpoint for fetching the latest released movies.
+         */
+        LATEST: '/movies/latest/',
+
+        /**
+         * Endpoint for fetching upcoming movies.
+         */
+        UPCOMING: '/movies/upcoming/',
+
+        /**
+         * Endpoint for retrieving available movie genres.
+         */
+        GENRES: '/movies/genres/',
+
+        /**
+         * Endpoint for retrieving available movie languages.
+         */
+        LANGUAGES: '/movies/languages/',
+    },
+
+    /**
+     * Routes related to cinema information.
+     */
+    CINEMAS: {
+        /**
+         * Endpoint for retrieving a list of cinemas.
+         */
+        LIST: '/cinemas/',
+
+        /**
+         * Endpoint for a specific cinema. Append the id and a trailing slash.
+         *
+         * @example ${API_ROUTES.CINEMAS.CINEMA}${id}/
+         */
+        CINEMA: '/cinemas/',
+
+        /**
+         * Locations of cinemas
+         */
+        LOCATION: '/cinemas/locations/',
+    },
+
+    /**
+     * routes related to bookings
+     */
+    BOOKINGS: {
+        /**
+         *  Endpoint for retrieving slot details. Append the slot id and a trailing slash.
+         *
+         * @example ${API_ROUTES.BOOKINGS.SLOT_DETAILS}${id}/
+         */
+        SLOT_DETAILS: '/bookings/slot-details/',
+
+        /**
+         * Endpoint for booking seats
+         */
+        BOOKING: '/bookings/',
+
+        /**
+         * To see All the tickets
+         */
+        TICKETS: '/bookings/tickets/',
+
+        /**
+         * To See the All booking history (current tickets + past bookings)
+         */
+        HISTORY: '/bookings/history/',
+
+        /**
+         * To Cancel a Ticket
+         *
+         * @example ${API_ROUTES.BOOKINGS.CANCEL}${id}/
+         */
+        CANCEL: '/bookings/cancel/',
+    },
+};
+
+/**
+ * To fetch the slots details on booking page at the interval of 30 seconds
+ */
+export const SLOT_DETAILS_POLLING_INTERVAL_TIME = 30000;
