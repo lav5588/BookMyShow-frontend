@@ -1,7 +1,8 @@
 import { SunMoon } from 'lucide-react';
 
-import { useTheme } from '@/components/ThemeProvider';
 import { Button } from '@/components/ui/button';
+
+import { useTheme } from './useTheme.hook';
 
 /**
  * Theme mode toggle button.

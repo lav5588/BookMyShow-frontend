@@ -188,11 +188,7 @@ export const HomePageConfig = {
             icon: Youtube,
             description:
                 'Subscribe for trailers, interviews, reviews and behind-the-scenes videos that make choosing your next movie more fun. Discover stories worth watching before you book.',
-            features: [
-                'Latest Trailers',
-                'Cast Interviews',
-                'Movie Reviews',
-            ],
+            features: ['Latest Trailers', 'Cast Interviews', 'Movie Reviews'],
             buttonText: 'Subscribe',
             buttonLink: '/youtube',
             imageUrl: YoutubeImage,
@@ -202,11 +198,7 @@ export const HomePageConfig = {
             title: 'About Us',
             description:
                 'Learn about the people, ideas and technology behind a simpler way to discover movies and reserve your seats. See our mission, vision and the experience we are building for movie lovers.',
-            features: [
-                'Our Mission',
-                'Our Vision',
-                'How We Build',
-            ],
+            features: ['Our Mission', 'Our Vision', 'How We Build'],
             buttonText: 'About Us',
             buttonLink: '/about',
             imageUrl: AboutUsImage,

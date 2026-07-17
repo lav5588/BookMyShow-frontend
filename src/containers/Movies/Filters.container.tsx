@@ -71,13 +71,13 @@ export const Filters = ({ inModal = false }: { inModal?: boolean }) => {
 
     const hasFilters = Boolean(
         filtersToApply.cinema ||
-            filtersToApply.slot_date ||
-            filtersToApply.languages?.length ||
-            filtersToApply.genres?.length ||
-            searchParams.get('cinema') ||
-            searchParams.get('slot_date') ||
-            searchParams.get('languages') ||
-            searchParams.get('genres'),
+        filtersToApply.slot_date ||
+        filtersToApply.languages?.length ||
+        filtersToApply.genres?.length ||
+        searchParams.get('cinema') ||
+        searchParams.get('slot_date') ||
+        searchParams.get('languages') ||
+        searchParams.get('genres'),
     );
 
     const handleApplyFilter = () => {

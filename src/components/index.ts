@@ -9,8 +9,7 @@ export {
     TypographyP,
     TypographySmall,
 } from './Typography';
-export { ModeToggle } from './ModeToggle';
-export { ThemeProvider } from './ThemeProvider';
+export { ThemeProvider, ModeToggle } from './Theme';
 export { Card } from './Card';
 export { SelectFilters } from './SelectFilters';
 export { DatePicker } from './DatePicker';
