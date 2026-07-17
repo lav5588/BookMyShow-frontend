@@ -1,11 +1,11 @@
-
 import { format } from 'date-fns';
 import { Film, MapPin } from 'lucide-react';
 import { Link, useParams, useSearchParams } from 'react-router';
 
 import SlotsNotAvailableSvg from '@/assets/images/slots-not-available.svg';
 import {
-    DatePicker,
+    DateCard,
+    Image,
     SlotCard,
     TypographyH1,
     TypographyH4,
@@ -14,6 +14,7 @@ import {
 import { Skeleton } from '@/components/ui/skeleton';
 import { TIME_FORMAT } from '@/constants';
 import { useCinemaQuery, useSlotsByCinemaQuery } from '@/services';
+import { useAvailableSlotsDatesQuery } from '@/services/services';
 
 /**
  * A container which shows all the movies with their slots in a particular cinema with cinema location
@@ -30,6 +31,10 @@ export const Cinema = () => {
             cinema_id: id,
             date: searchParams.get('date') ?? undefined,
         });
+
+    const { data: avalableSlotsDates } = useAvailableSlotsDatesQuery({
+        cinema_id: id,
+    });
 
     return (
         <div className="my-6 flex flex-col gap-4">
@@ -48,20 +53,30 @@ export const Cinema = () => {
                     <Skeleton className="h-7 w-70 mt-4" />
                 </>
             )}
-            <DatePicker
-                selected={
-                    searchParams.get('date')
-                        ? new Date(searchParams.get('date')!)
-                        : new Date()
-                }
-                onDateChange={(date) => {
-                    searchParams.delete('date');
-                    if (date) {
-                        searchParams.append('date', format(date, 'yyyy-MM-dd'));
-                    }
-                    setSearchParams(searchParams);
-                }}
-            />
+
+            <div
+                role="radiogroup"
+                aria-label="Available dates"
+                className="flex gap-3 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 px-1"
+            >
+                {avalableSlotsDates?.map((date) => {
+                    const formattedDate = format(date, 'yyyy-MM-dd');
+
+                    const selected = formattedDate === searchParams.get('date');
+
+                    return (
+                        <DateCard
+                            date={date}
+                            key={date}
+                            selected={selected}
+                            handleClick={() => {
+                                searchParams.set('date', formattedDate);
+                                setSearchParams(searchParams);
+                            }}
+                        />
+                    );
+                })}
+            </div>
             <div>
                 {!isMovieSlotsLoading && !!movieSlots?.length && (
                     <>
@@ -90,9 +105,7 @@ export const Cinema = () => {
                                                     language={
                                                         movie.languages.find(
                                                             (language) =>
-
-
-language.id ===
+                                                                language.id ===
                                                                 slot.language,
                                                         )?.language || ''
                                                     }
@@ -131,12 +144,10 @@ language.id ===
                 )}
                 {!isMovieSlotsLoading && !movieSlots?.length && (
                     <div className="flex flex-col justify-center items-center">
-                        <div>
-                            <img
-                                src={SlotsNotAvailableSvg}
-                                alt="Slots not available fallback"
-                            />
-                        </div>
+                        <Image
+                            src={SlotsNotAvailableSvg}
+                            alt="Slots not available fallback"
+                        />
                         <TypographyH4 className="text-center">
                             No Slots Available for the selected Date. Please
                             Change the Date.

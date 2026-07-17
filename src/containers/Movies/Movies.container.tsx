@@ -1,11 +1,10 @@
-
 import { useEffect, useRef } from 'react';
 
 import { Filter } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router';
 
 import MovieNotAvailableSVG from '@/assets/images/movie-not-available.svg';
-import { Card, TypographyH4 } from '@/components';
+import { Card, Image, TypographyH4 } from '@/components';
 import { Button } from '@/components/ui/button';
 import {
     Dialog,
@@ -110,9 +109,7 @@ export const Movies = () => {
                                     to={`/movie/${movie.slug}`}
                                 >
                                     <Card
-
-
-heading={movie.name}
+                                        heading={movie.name}
                                         imageUrl={movie.movie_poster || ''}
                                         subheading={movie.genres
                                             .map((genre) => genre.genre)
@@ -131,13 +128,13 @@ heading={movie.name}
                         ))}
                     {!isLoadingMovies && !movies?.pages[0]?.results.length && (
                         <>
-                            <div className="h-50 w-80">
-                                <img
-                                    src={MovieNotAvailableSVG}
-                                    className="h-full w-full object-contain"
-                                    alt="movie not available fallback"
-                                />
-                            </div>
+                            <Image
+                                src={MovieNotAvailableSVG}
+                                alt="movie not available fallback"
+                                fillImage="contain"
+                                height={{ base: 50 }}
+                                width={{ base: 80 }}
+                            />
                             <TypographyH4 className="text-center w-[70%]">
                                 No Movies available for the applied Filter.
                                 Please Change the Filter.

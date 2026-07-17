@@ -1,10 +1,14 @@
-
 import { format } from 'date-fns';
 import { LocationEdit } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router';
 
 import CinemasNotAvailable from '@/assets/images/cinemas-not-available.svg';
-import { TypographyH2, TypographyH4, TypographyMuted } from '@/components';
+import {
+    Image,
+    TypographyH2,
+    TypographyH4,
+    TypographyMuted,
+} from '@/components';
 import { Label } from '@/components/ui/label';
 import {
     Select,
@@ -95,15 +99,12 @@ export const Cinemas = () => {
                         />
                     ))}
 
-
-{!isCinemasLoading && !cinemas?.length && (
+                {!isCinemasLoading && !cinemas?.length && (
                     <div className="flex flex-col justify-center items-center">
-                        <div>
-                            <img
-                                src={CinemasNotAvailable}
-                                alt="Cinemas Not Available Fallback"
-                            />
-                        </div>
+                        <Image
+                            src={CinemasNotAvailable}
+                            alt="Cinemas Not Available Fallback"
+                        />
                         <TypographyH2 className="text-center">
                             There is no Cinemas Available
                         </TypographyH2>

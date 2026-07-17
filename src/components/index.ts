@@ -17,3 +17,7 @@ export { DatePicker } from './DatePicker';
 export { SlotCard } from './SlotCard';
 export { Seat } from './Seat';
 export { Ticket } from './Ticket';
+export { DateCard } from './DateCard';
+export { Image } from './Image';
+export { MovieCarousel } from './MovieCarousel';
+export { LandingSection } from './LandingSection';

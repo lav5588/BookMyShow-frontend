@@ -1,10 +1,9 @@
-
 import { useState } from 'react';
 
 import { Edit, User } from 'lucide-react';
 
 import UserNotFound from '@/assets/images/user-not-found.svg';
-import { TypographyH1, TypographyP } from '@/components';
+import { Image, TypographyH1, TypographyP } from '@/components';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -75,7 +74,7 @@ export const Profile = () => {
                         )}
                         {!isUserDetailsLoading && !user && (
                             <div className="flex flex-col items-center">
-                                <img src={UserNotFound} alt="" aria-hidden />
+                                <Image src={UserNotFound} alt="" aria-hidden />
                                 <TypographyH1 className="">
                                     User Not Found
                                 </TypographyH1>
@@ -89,9 +88,7 @@ export const Profile = () => {
                         onOpenChange={(val) => setIsProfileUpdateModalOpen(val)}
                     >
                         <DialogContent>
-
-
-<DialogHeader>
+                            <DialogHeader>
                                 <DialogTitle>Update Profile</DialogTitle>
                                 <DialogDescription>
                                     To update Your Account Details Fill the form

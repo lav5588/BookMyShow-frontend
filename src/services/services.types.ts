@@ -254,7 +254,6 @@ export type SlotsByMovieSlugResponse = {
     slots: Slot[];
 } & Cinema;
 
-
 /**
  * All the details related to a Slot
  */

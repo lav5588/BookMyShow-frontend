@@ -1,11 +1,11 @@
-
 import { format } from 'date-fns';
 import { MapPin, TvMinimal } from 'lucide-react';
 import { Link, useParams, useSearchParams } from 'react-router';
 
 import SlotsNotAvailableSvg from '@/assets/images/slots-not-available.svg';
 import {
-    DatePicker,
+    DateCard,
+    Image,
     SlotCard,
     TypographyH1,
     TypographyH4,
@@ -16,6 +16,7 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { TIME_FORMAT } from '@/constants';
 import { capitalizeFirstCharacter } from '@/lib';
 import { useMovieQuery, useSlotsByMovieSlugQuery } from '@/services';
+import { useAvailableMovieSlotDatesQuery } from '@/services/services';
 
 /**
  * A container which shows all the cinemas with their slots of a particular movie with movie details
@@ -42,17 +43,27 @@ export const MovieSlots = () => {
             },
         );
 
+    const { data: availableSlotDates } = useAvailableMovieSlotDatesQuery(
+        {
+            slug: slug || '',
+        },
+        {
+            skip: !slug,
+        },
+    );
+
     return (
         <div className="my-6 flex flex-col gap-4">
             {!isMovieLoading && movie && (
                 <div className="flex flex-col items-center md:flex-row gap-6">
-                    <div className="h-40 w-80 sm:h-50 sm:w-100">
-                        <img
-                            src={movie?.movie_poster ?? ''}
-                            alt={`${movie?.name} Poster`}
-                            className="h-full w-full object-cover rounded-xl"
-                        />
-                    </div>
+                    <Image
+                        src={movie?.movie_poster ?? ''}
+                        alt={`${movie?.name} Poster`}
+                        rounded
+                        fillImage="cover"
+                        height={{ base: 40, sm: 50 }}
+                        width={{ base: 80, sm: 100 }}
+                    />
                     <div className="md:w-2/3 self-start">
                         <TypographyH1>{movie?.name}</TypographyH1>
                         <Badge variant="secondary" className="text-sm ">
@@ -86,22 +97,29 @@ export const MovieSlots = () => {
                     </div>
                 </div>
             )}
-            <DatePicker
-                selected={
-                    searchParams.get('date')
-                        ? new Date(searchParams.get('date')!)
-                        : new Date()
-                }
-                onDateChange={(date) => {
-                    searchParams.delete('date');
-                    if (date) {
-                        searchParams.append('date', format(date, 'yyyy-MM-dd'));
+            <div
+                role="radiogroup"
+                aria-label="Available dates"
+                className="flex gap-3 overflow-x-auto scrollbar-none snap-x snap-mandatory py-2 px-1"
+            >
+                {availableSlotDates?.map((date) => {
+                    const formattedDate = format(date, 'yyyy-MM-dd');
 
+                    const selected = formattedDate === searchParams.get('date');
 
-}
-                    setSearchParams(searchParams);
-                }}
-            />
+                    return (
+                        <DateCard
+                            date={date}
+                            key={date}
+                            selected={selected}
+                            handleClick={() => {
+                                searchParams.set('date', formattedDate);
+                                setSearchParams(searchParams);
+                            }}
+                        />
+                    );
+                })}
+            </div>
             {!isSlotsLoading && !!movieSlots?.length && (
                 <>
                     {movieSlots?.map((cinema) => (
@@ -177,15 +195,12 @@ export const MovieSlots = () => {
                 </>
             )}
 
-
-{!isSlotsLoading && !movieSlots?.length && (
+            {!isSlotsLoading && !movieSlots?.length && (
                 <div className="flex flex-col justify-center items-center">
-                    <div>
-                        <img
-                            src={SlotsNotAvailableSvg}
-                            alt="Slots not available fallback"
-                        />
-                    </div>
+                    <Image
+                        src={SlotsNotAvailableSvg}
+                        alt="Slots not available fallback"
+                    />
                     <TypographyH4>
                         No Slots Available on the selected date. Please Change
                         the date.

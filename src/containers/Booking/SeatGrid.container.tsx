@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 import { BadgeCheck, Loader2 } from 'lucide-react';
@@ -7,6 +6,7 @@ import { toast } from 'sonner';
 
 import ScreenImage from '@/assets/images/screen-img.png';
 import {
+    Image,
     Seat,
     TypographyH2,
     TypographyH3,
@@ -122,8 +122,7 @@ export const SeatGrid = () => {
                                 }).map((_, index) => {
                                     const row = slotDetails.cinema.rows - index;
 
-
-return (
+                                    return (
                                         <div
                                             key={`row-${row}`}
                                             className="flex items-center gap-1"
@@ -184,9 +183,7 @@ return (
                                                         />
 
                                                         {col - 1 ===
-
-
-slotDetails.cinema
+                                                            slotDetails.cinema
                                                                 .seats_per_row /
                                                                 2 && (
                                                             <div className="w-8"></div>
@@ -202,10 +199,13 @@ slotDetails.cinema
                                     <TypographyMuted>
                                         Screen This way
                                     </TypographyMuted>
-                                    <img
+                                    <Image
                                         src={ScreenImage}
                                         alt="Cinema Screen"
-                                        className="w-100 object-contain opacity-90"
+                                        fillImage="contain"
+                                        width={{
+                                            base: 100,
+                                        }}
                                     />
                                 </div>
                             </div>
@@ -275,8 +275,7 @@ slotDetails.cinema
                         </DialogTitle>
                         <BadgeCheck className="size-30 text-green-600 self-center" />
 
-
-<DialogDescription className="text-center">
+                        <DialogDescription className="text-center">
                             Your Tickets have been booked Successfully.Please
                             Visit Your Profile for the tickets.
                         </DialogDescription>

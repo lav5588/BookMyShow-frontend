@@ -1,12 +1,19 @@
-
 import { useState } from 'react';
 
 import { format } from 'date-fns';
 import { useSearchParams } from 'react-router';
 
-import { DatePicker, SelectFilters } from '@/components';
+import { DatePicker } from '@/components';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import {
+    MultiSelect,
+    MultiSelectContent,
+    MultiSelectGroup,
+    MultiSelectItem,
+    MultiSelectTrigger,
+    MultiSelectValue,
+} from '@/components/ui/multi-select';
 import {
     Select,
     SelectContent,
@@ -61,6 +68,17 @@ export const Filters = ({ inModal = false }: { inModal?: boolean }) => {
         filtersToApply.genres?.sort().join(',') == searchParams.get('genres') &&
         filtersToApply.languages?.sort().join(',') ==
             searchParams.get('languages');
+
+    const hasFilters = Boolean(
+        filtersToApply.cinema ||
+            filtersToApply.slot_date ||
+            filtersToApply.languages?.length ||
+            filtersToApply.genres?.length ||
+            searchParams.get('cinema') ||
+            searchParams.get('slot_date') ||
+            searchParams.get('languages') ||
+            searchParams.get('genres'),
+    );
 
     const handleApplyFilter = () => {
         searchParams.delete('languages');
@@ -121,9 +139,7 @@ export const Filters = ({ inModal = false }: { inModal?: boolean }) => {
     };
 
     const handleCinemaSelection = (cinema_id: string) => {
-
-
-if (cinema_id !== '-1') {
+        if (cinema_id !== '-1') {
             setFiltersToApply((prev) => ({
                 ...prev,
                 cinema: cinema_id,
@@ -136,28 +152,88 @@ if (cinema_id !== '-1') {
         }
     };
 
+    const handleClearAllFilters = () => {
+        setFiltersToApply({});
+
+        const clearedSearchParams = new URLSearchParams(searchParams);
+        clearedSearchParams.delete('languages');
+        clearedSearchParams.delete('genres');
+        clearedSearchParams.delete('slot_date');
+        clearedSearchParams.delete('cinema');
+        setSearchParams(clearedSearchParams);
+    };
+
     return (
         <div className=" flex-col gap-6 bg-accent p-10 rounded-xl  h-full flex ">
-            <SelectFilters
-                heading="Languages"
-                options={
-                    totalLanguages?.map((language) => language.language) || []
-                }
-                onValueChange={handleLanguageChange}
-                alreadySelected={searchParams.get('languages')?.split(',')}
-            />
-            <SelectFilters
-                heading="Genres"
-                options={totalGenres?.map((gen) => gen.genre) || []}
-                onValueChange={handleGenreChange}
-                alreadySelected={searchParams.get('genres')?.split(',')}
-            />
+            <div className="flex justify-end">
+                <Button
+                    variant="link"
+                    size="sm"
+                    className="h-auto p-0 text-xs underline"
+                    onClick={handleClearAllFilters}
+                    disabled={!hasFilters}
+                >
+                    Clear all filters
+                </Button>
+            </div>
+
+            <div>
+                <Label className="mb-3">Languages</Label>
+                <MultiSelect
+                    values={filtersToApply.languages ?? []}
+                    onValuesChange={handleLanguageChange}
+                >
+                    <MultiSelectTrigger className="w-full">
+                        <MultiSelectValue placeholder="Select languages" />
+                    </MultiSelectTrigger>
+                    <MultiSelectContent
+                        search={{
+                            placeholder: 'Search languages...',
+                            emptyMessage: 'No languages found.',
+                        }}
+                    >
+                        <MultiSelectGroup>
+                            {totalLanguages?.map(({ id, language }) => (
+                                <MultiSelectItem key={id} value={id.toString()}>
+                                    {language}
+                                </MultiSelectItem>
+                            ))}
+                        </MultiSelectGroup>
+                    </MultiSelectContent>
+                </MultiSelect>
+            </div>
+
+            <div>
+                <Label className="mb-3">Genres</Label>
+                <MultiSelect
+                    values={filtersToApply.genres ?? []}
+                    onValuesChange={handleGenreChange}
+                >
+                    <MultiSelectTrigger className="w-full">
+                        <MultiSelectValue placeholder="Select genres" />
+                    </MultiSelectTrigger>
+                    <MultiSelectContent
+                        search={{
+                            placeholder: 'Search genres...',
+                            emptyMessage: 'No genres found.',
+                        }}
+                    >
+                        <MultiSelectGroup>
+                            {totalGenres?.map(({ id, genre }) => (
+                                <MultiSelectItem key={id} value={id.toString()}>
+                                    {genre}
+                                </MultiSelectItem>
+                            ))}
+                        </MultiSelectGroup>
+                    </MultiSelectContent>
+                </MultiSelect>
+            </div>
 
             <div>
                 <Label className="mb-3">Cinema</Label>
                 <Select
                     onValueChange={handleCinemaSelection}
-                    defaultValue={searchParams.get('cinema') || undefined}
+                    value={filtersToApply.cinema ?? '-1'}
                 >
                     <SelectTrigger className="w-full">
                         <SelectValue placeholder="Select a Cinema" />
@@ -178,7 +254,16 @@ if (cinema_id !== '-1') {
                     </SelectContent>
                 </Select>
             </div>
-            <DatePicker label="Date" onDateChange={handleDateChange} />
+            <DatePicker
+                key={filtersToApply.slot_date ?? 'no-date'}
+                label="Date"
+                selected={
+                    filtersToApply.slot_date
+                        ? new Date(`${filtersToApply.slot_date}T00:00:00`)
+                        : undefined
+                }
+                onDateChange={handleDateChange}
+            />
             {inModal ? (
                 <DialogClose disabled={applyBtnDisabled} asChild>
                     <Button

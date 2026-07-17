@@ -49,10 +49,10 @@ export const Ticket = ({
                         </TypographyP>
                     </div>
                 </div>
-                <TypographyH3 className="text-center">
+                <TypographyH3 className="text-center truncate">
                     {movieName} - ( {capitalizeFirstCharacter(movieLanguage)} )
                 </TypographyH3>
-                <TypographyP className="text-center text-lg">
+                <TypographyP className="text-center text-lg truncate">
                     {cinemaName} {capitalizeFirstCharacter(cinemaLocation)}
                 </TypographyP>
                 <div className="flex justify-between mt-10">

@@ -1,4 +1,3 @@
-
 import { Loader2 } from 'lucide-react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -7,7 +6,7 @@ import { toast } from 'sonner';
 import type { z } from 'zod';
 
 import signupImage from '@/assets/images/signup.webp';
-import { TypographyH2, TypographyLead } from '@/components';
+import { Image, TypographyH2, TypographyLead } from '@/components';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -97,13 +96,14 @@ export const SignUp = () => {
             </TypographyLead>
 
             <div className="flex mt-10 gap-4">
-                <div className="h-144 w-full hidden md:block">
-                    <img
-                        src={signupImage}
-                        alt=""
-                        className="w-full h-full object-fit rounded-4xl"
-                    />
-                </div>
+                <Image
+                    src={signupImage}
+                    alt=""
+                    rounded
+                    fillImage="fit"
+                    className="hidded md:block"
+                    height={{ base: 144 }}
+                />
                 <Form {...form}>
                     <form
                         onSubmit={(...args) =>
@@ -116,9 +116,7 @@ export const SignUp = () => {
                             name="profile_pic"
                             render={({
                                 field: { name, onBlur, onChange, ref },
-
-
-}) => (
+                            }) => (
                                 <FormItem>
                                     <FormLabel>Profile Picture</FormLabel>
                                     <FormControl>
@@ -196,9 +194,7 @@ export const SignUp = () => {
                         />
                         <FormField
                             control={form.control}
-
-
-name="password"
+                            name="password"
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel>
@@ -260,4 +256,3 @@ name="password"
         </div>
     );
 };
-

@@ -1,4 +1,4 @@
-import { Clock } from 'lucide-react';
+import { Clock, IndianRupee, Languages } from 'lucide-react';
 
 import { capitalizeFirstCharacter, cn } from '@/lib';
 
@@ -16,7 +16,7 @@ export const SlotCard = ({
 }: SlotCardProps) => (
     <div
         className={cn(
-            'border cursor-pointer rounded-xl p-3 w-40 h-18 text-center text-green-600 hover:bg-green-50 overflow-hidden select-none',
+            'border cursor-pointer rounded-xl p-3 w-50 h-28 text-green-600 hover:bg-green-50 overflow-hidden select-none',
             className,
         )}
         {...props}
@@ -26,8 +26,17 @@ export const SlotCard = ({
             {time}
         </TypographyP>
         <TypographyP>
-            {language ? capitalizeFirstCharacter(language) + ', ' : ''}
-            &#8377;
+            {language ? (
+                <>
+                    <Languages className="inline mr-2" />{' '}
+                    {capitalizeFirstCharacter(language)}
+                </>
+            ) : (
+                ''
+            )}
+        </TypographyP>
+        <TypographyP>
+            <IndianRupee className="inline mr-2" />
             {price}
         </TypographyP>
     </div>

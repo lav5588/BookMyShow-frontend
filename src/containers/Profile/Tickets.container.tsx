@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 
 import { format } from 'date-fns';
@@ -98,9 +97,7 @@ export const Tickets = () => {
                                 date={format(
                                     ticket.show_time,
                                     DATE_FORMAT_CUSTOM,
-
-
-)}
+                                )}
                                 movieLanguage={ticket.language}
                                 movieName={ticket.movie}
                                 seatNumber={
@@ -185,9 +182,7 @@ export const Tickets = () => {
                             {isCancelling ? (
                                 <>
                                     <Loader2 className="animate-spin" />{' '}
-
-
-Cancelling...
+                                    Cancelling...
                                 </>
                             ) : (
                                 "Yes, I'm Sure"

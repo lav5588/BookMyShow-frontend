@@ -1,4 +1,3 @@
-
 import { Loader2 } from 'lucide-react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -7,7 +6,7 @@ import { toast } from 'sonner';
 import type { z } from 'zod';
 
 import loginImage from '@/assets/images/login.webp';
-import { TypographyH2, TypographyLead } from '@/components';
+import { Image, TypographyH2, TypographyLead } from '@/components';
 import { Button } from '@/components/ui/button';
 import {
     Form,
@@ -86,13 +85,14 @@ export const Login = () => {
             </TypographyLead>
 
             <div className="flex mt-10 gap-4 items-center">
-                <div className="h-72 w-full hidden md:block">
-                    <img
-                        src={loginImage}
-                        alt=""
-                        className="w-full h-full object-cover rounded-4xl"
-                    />
-                </div>
+                <Image
+                    src={loginImage}
+                    alt=""
+                    fillImage="cover"
+                    rounded
+                    height={{ base: 72 }}
+                    className="hidden md:block"
+                />
                 <Form {...form}>
                     <form
                         onSubmit={(...args) =>
@@ -112,9 +112,7 @@ export const Login = () => {
                                     <FormControl>
                                         <Input
                                             placeholder="Type Your Email"
-
-
-type="email"
+                                            type="email"
                                             {...field}
                                         />
                                     </FormControl>
@@ -166,4 +164,3 @@ type="email"
         </div>
     );
 };
-

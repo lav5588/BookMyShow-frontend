@@ -1,6 +1,9 @@
+export { AboutUs } from './AboutUs';
 export { Booking } from './Booking';
 export { Cinema } from './Cinema';
 export { Cinemas } from './Cinemas';
+export { ContactUs } from './ContactUs';
+export { ErrorFallback } from './ErrorFallback';
 export { Footer } from './Footer';
 export { Header } from './Header';
 export { Home } from './Home';

@@ -1,4 +1,3 @@
-
 import { Edit, Loader2 } from 'lucide-react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -102,9 +101,7 @@ export const ProfileUpdateForm = ({ onSuccess }: ProfileUpdateFormProps) => {
                             <FormItem>
                                 <FormLabel>Name</FormLabel>
                                 <FormControl>
-
-
-<Input
+                                    <Input
                                         placeholder="Type Your Name"
                                         type="text"
                                         {...field}

@@ -1,6 +1,9 @@
+export { Aboutus } from './Aboutus';
 export { Booking } from './Booking';
 export { Cinema } from './Cinema';
 export { Cinemas } from './Cinemas';
+export { Contactus } from './Contactus';
+export { ErrorFallback } from './ErrorFallback';
 export { Home } from './Home';
 export { Login } from './Login';
 export { Movie } from './Movie';

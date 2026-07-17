@@ -4,7 +4,7 @@ import { Trash2, User } from 'lucide-react';
 import { Link } from 'react-router';
 import { toast } from 'sonner';
 
-import { ModeToggle, TypographyH2 } from '@/components';
+import { Image, ModeToggle, TypographyH2 } from '@/components';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -81,13 +81,14 @@ export const Header = () => {
         <div>
             <NavigationMenu className="max-w-full flex justify-between p-2">
                 <Link to="/" className="flex justify-center items-center">
-                    <div className="size-10 mr-2">
-                        <img
-                            src="/logo.svg"
-                            alt="bookmyshow logo"
-                            className="size-full  object-contain"
-                        />
-                    </div>
+                    <Image
+                        src="/logo.svg"
+                        alt="bookmyshow logo"
+                        fillImage="contain"
+                        height={{ base: 10 }}
+                        width={{ base: 10 }}
+                        className="mr-2"
+                    />
                     <TypographyH2 className="hidden sm:block text-primary">
                         BookMyShow
                     </TypographyH2>
@@ -117,7 +118,7 @@ export const Header = () => {
                         </li>
                     </NavigationMenuLink>
                     {!isAuthenticated && (
-<NavigationMenuLink asChild>
+                        <NavigationMenuLink asChild>
                             <li>
                                 <Link
                                     to={ROUTES.LOGIN}

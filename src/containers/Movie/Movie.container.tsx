@@ -1,12 +1,11 @@
-
 import { format } from 'date-fns';
 import { Dot } from 'lucide-react';
 import { Link, useParams } from 'react-router';
 
-import { TypographyH1, TypographyH3, TypographyP } from '@/components';
+import { Image, TypographyH1, TypographyH3, TypographyP } from '@/components';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
-import { capitalizeFirstCharacter, cn } from '@/lib';
+import { capitalizeFirstCharacter } from '@/lib';
 import { useMovieQuery } from '@/services';
 
 /**
@@ -50,12 +49,11 @@ export const Movie = () => {
                     <div className="flex justify-center">
                         <div className="h-40 w-80 md:h-50 md:w-100 lg:h-60 lg:w-120">
                             {movie?.movie_poster && (
-                                <img
+                                <Image
                                     src={movie.movie_poster || ''}
                                     alt={`${movie?.name} poster`}
-                                    className={cn(
-                                        'h-full w-full rounded-2xl object-cover',
-                                    )}
+                                    rounded
+                                    fillImage="cover"
                                 />
                             )}
                             {!movie.movie_poster && (
@@ -91,9 +89,7 @@ export const Movie = () => {
                             <Link
                                 to={`/movie/${slug}/slots?date=${format(new Date(), 'yyyy-MM-dd')}`}
                             >
-
-
-Book Tickets
+                                Book Tickets
                             </Link>
                         </Button>
                     </div>

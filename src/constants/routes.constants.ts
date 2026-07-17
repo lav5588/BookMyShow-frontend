@@ -19,4 +19,6 @@ export const ROUTES = {
     CINEMAS: '/cinemas',
     CINEMA: '/cinema/:id',
     PROFILE: '/profile',
+    ABOUT_US: '/about',
+    CONTACT_US: '/contact',
 };

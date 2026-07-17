@@ -1,0 +1,13 @@
+<svg width="400" height="280" viewBox="0 0 400 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="280" rx="24" fill="#FFF1F4"/>
+  <circle cx="200" cy="136" r="84" fill="#FFD7E1"/>
+  <path d="M65 229C99 199 135 187 174 194C211 201 231 229 270 225C305 221 330 201 353 180" stroke="#FF2E63" stroke-width="6" stroke-linecap="round" stroke-dasharray="4 14"/>
+  <path d="M126 89C126 79.059 134.059 71 144 71H256C265.941 71 274 79.059 274 89V177C274 186.941 265.941 195 256 195H144C134.059 195 126 186.941 126 177V89Z" fill="#24242B"/>
+  <path d="M144 91C144 85.477 148.477 81 154 81H246C251.523 81 256 85.477 256 91V161C256 166.523 251.523 171 246 171H154C148.477 171 144 166.523 144 161V91Z" fill="white"/>
+  <path d="M163 112H184V138H163V112Z" fill="#FF2E63"/>
+  <path d="M216 112H237V138H216V112Z" fill="#FF2E63"/>
+  <path d="M180 153C192 162 208 162 220 153" stroke="#24242B" stroke-width="6" stroke-linecap="round"/>
+  <path d="M171 54L177 42L183 54L195 60L183 66L177 78L171 66L159 60L171 54Z" fill="#FF2E63"/>
+  <path d="M293 107L297 99L301 107L309 111L301 115L297 123L293 115L285 111L293 107Z" fill="#FF2E63"/>
+  <text x="200" y="228" text-anchor="middle" fill="#24242B" font-family="Arial, sans-serif" font-size="28" font-weight="700">404</text>
+</svg>

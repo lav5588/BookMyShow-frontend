@@ -1,6 +1,7 @@
 import { cn } from '@/lib';
 
 import type { CardProps } from './Card.types';
+import { Image } from '../Image';
 import { TypographyH3, TypographyMuted } from '../Typography';
 import { Card as ShadCNCard, CardContent } from '../ui/card';
 
@@ -19,13 +20,15 @@ export const Card = ({
         className={cn('max-w-100 select-none hover:bg-muted', className)}
     >
         <CardContent>
-            <div className='h-38 sm:h-55'>
-                <img
-                    src={imageUrl}
-                    alt={`${heading} Poster`}
-                    className={cn('rounded-xl h-full w-full')}
-                />
-            </div>
+            <Image
+                src={imageUrl}
+                alt={`${heading} Poster`}
+                height={{ base: 38, sm: 58 }}
+                width={{ base: 63, sm: 88 }}
+                fillImage="cover"
+                className="rounded-xl"
+                rounded
+            />
             <TypographyH3
                 className="whitespace-nowrap text-ellipsis overflow-hidden"
                 title={heading}

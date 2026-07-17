@@ -1,4 +1,3 @@
-
 import { format } from 'date-fns';
 
 import { API_ROUTES, DATE_FORMAT_ISO } from '@/constants';
@@ -138,9 +137,7 @@ export const api = createApi({
          */
         updateUserDetails: builder.mutation<
             Omit<SignupRequest, 'password'>,
-
-
-{ token: string; data: UpdateProfileRequest }
+            { token: string; data: UpdateProfileRequest }
         >({
             query: ({ token, data }) => ({
                 url: API_ROUTES.USERS.UPDATE_PROFILE,
@@ -277,8 +274,7 @@ export const api = createApi({
             }),
         }),
 
-
-/**
+        /**
          * Retrieve A Single Cinema based on id
          */
         cinema: builder.query<Cinema, { id: string }>({
@@ -303,6 +299,15 @@ export const api = createApi({
         }),
 
         /**
+         * Retrieves the dates of all available upcoming movies
+         */
+        availableSlotsDates: builder.query<string[], { cinema_id?: string }>({
+            query: ({ cinema_id }) => ({
+                url: `/cinemas/${cinema_id}/available-slots-dates/`,
+            }),
+        }),
+
+        /**
          * Retrieves all the slots of a particular movie along with cinema their cinema Details
          */
         slotsByMovieSlug: builder.query<
@@ -314,6 +319,12 @@ export const api = createApi({
                 params: {
                     date: date ? date : new Date().toISOString().slice(0, 10),
                 },
+            }),
+        }),
+
+        availableMovieSlotDates: builder.query<string[], { slug: string }>({
+            query: ({ slug }) => ({
+                url: `/movies/${slug}/available-slots-dates/`,
             }),
         }),
 
@@ -402,8 +413,7 @@ export const api = createApi({
             providesTags: ['tickets'],
         }),
 
-
-/**
+        /**
          * TO retrieve all past bookings
          */
         pastBookings: builder.infiniteQuery<
@@ -449,7 +459,9 @@ export const {
     useCinemaQuery,
     useLocationsQuery,
     useSlotsByCinemaQuery,
+    useAvailableSlotsDatesQuery,
     useSlotsByMovieSlugQuery,
+    useAvailableMovieSlotDatesQuery,
     useSlotDetailsQuery,
     useBookingMutation,
     useUpdateUserDetailsMutation,
