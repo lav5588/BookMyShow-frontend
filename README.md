@@ -1,37 +1,153 @@
-React Base Shad CN Template
-Getting Started
-Prerequisites
-Node.js: Version 20+. You can download and install it from nodejs.org.
-Installing
-To set up the project on your local environment, follow these steps:
-Clone the Repository
-First, you need to clone the repository.
-nvm (Node Version Manager): If the required Node version 20+ is already installed and active, you can skip this step else you can use nvm (Node Version Manager). Here's how to use it:
-Switch Node Version: If the required Node version is already installed, run:
-nvm use
-Install Node Version: If the required Node version isn’t installed, you can install it by running:
-nvm install
-Tip: If you don't have nvm installed, you can install it by following the instructions on nvm-sh/nvm.
+# BookMyShow Frontend
 
-Alternatively, you can update Node.js directly by downloading the latest version from the official website: nodejs.org.
-Install the necessary dependencies using yarn
-npm install
-Run the Development Server
-npm run dev
-The app will typically be available at http://localhost:3000, but check the terminal output for the exact URL.
+A responsive movie discovery and ticket-booking frontend built with React, TypeScript, and Vite. It lets users browse movies and cinemas, filter show listings, manage bookings, and access account-related screens.
 
-NOTE: : If you want to change the server's port number, you can do so by creating a .env file at the root level of the project and update the PORT field (check .env.template for reference)
-PORT=<New Port>
-Format the Code
-npm run prettier:fix
-Lint the Code
+## Features
+
+- Browse current, latest, and upcoming movies
+- Filter movies by language, genre, cinema, and date
+- Explore cinemas and their available movie slots
+- View movie, cinema, and booking details
+- Authentication flows for sign up, login, token refresh, and logout
+- Profile and ticket management screens
+- Responsive landing, About Us, and Contact Us pages
+- Dark and light theme support
+- Not Found and route error fallback screens
+
+## Tech stack
+
+- React 19 and TypeScript
+- Vite 7
+- React Router 7
+- Redux Toolkit and RTK Query
+- Tailwind CSS 4 and shadcn/ui components
+- React Hook Form and Zod
+- Lucide icons and Sonner notifications
+
+## Prerequisites
+
+- Node.js `v22.19.0` (see [`.nvmrc`](.nvmrc))
+- npm
+- A running BookMyShow backend API
+
+## Getting started
+
+1. Clone the repository and open the frontend directory.
+
+2. Use the expected Node.js version:
+
+   ```bash
+   nvm use
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm ci
+   ```
+
+4. Create your local environment file from the example:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   On Windows PowerShell:
+
+   ```powershell
+   Copy-Item .env.example .env
+   ```
+
+5. Set the backend API URL in `.env`:
+
+   ```env
+   PORT=3000
+   VITE_BASE_URL=http://localhost:8000/api
+   ```
+
+6. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+   The app runs on `http://localhost:3000` when `PORT=3000` is configured.
+
+## Available scripts
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Starts the Vite development server. |
+| `npm run build` | Type-checks the app and creates a production build. |
+| `npm run preview` | Serves the production build locally. |
+| `npm run lint` | Runs ESLint across the project. |
+| `npm run lint:fix` | Runs ESLint and applies safe fixes. |
+| `npm run ts:check` | Runs TypeScript without emitting files. |
+| `npm run prettier` | Checks formatting with Prettier. |
+| `npm run prettier:fix` | Formats files with Prettier. |
+| `npm run prepare` | Installs Husky Git hooks. |
+
+## Routes
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Home page with movie and cinema discovery sections. |
+| `/movies` | Movie catalogue and filters. |
+| `/movie/:slug` | Movie details. |
+| `/movie/:slug/slots` | Movie showtimes. |
+| `/cinemas` | Cinema catalogue. |
+| `/cinema/:id` | Cinema details and slots. |
+| `/booking/:slotId` | Seat selection and booking flow. |
+| `/login` | Login page. |
+| `/signup` | Registration page. |
+| `/profile` | User profile and ticket details. |
+| `/about` | About Us page. |
+| `/contact` | Contact Us page. |
+| `*` | Not Found fallback for unmatched routes. |
+
+## Project structure
+
+```text
+src/
+├── assets/         # Images, fonts, and SVG illustrations
+├── components/     # Shared UI and feature components
+├── constants/      # API, format, and route constants
+├── containers/     # Page-level feature logic and configuration
+├── features/       # Redux slices
+├── layouts/        # Shared application layouts
+├── pages/          # Route-level page components
+├── router/         # React Router configuration
+├── services/       # RTK Query API services and API types
+├── store/          # Redux store and typed hooks
+└── index.tsx       # Application entry point
+```
+
+## Environment variables
+
+| Variable | Required | Description |
+| --- | --- | --- |
+| `VITE_BASE_URL` | Yes | Base URL for the backend API. |
+| `PORT` | No | Local development and preview server port. |
+
+Only variables prefixed with `VITE_` are exposed to the frontend by Vite. Do not place secrets in frontend environment files.
+
+## Quality checks
+
+Run these before opening a pull request:
+
+```bash
+npm run prettier
 npm run lint
-To Fix Lint errors
-npm run lint:fix
-Build the Project
+npm run ts:check
 npm run build
-This command will generate the optimized production build in the dist directory.
-Preview the build
-npm run preview
-Setup Husky (If pre-commit hooks are not working)
-npm run prepare
+```
+
+## Production build
+
+Create an optimized production bundle with:
+
+```bash
+npm run build
+```
+
+The generated files are placed in `dist/`. Production builds minify JavaScript, remove `console` calls, hide source maps, and optimize supported raster image assets.
