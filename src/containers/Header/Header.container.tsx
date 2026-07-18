@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from 'react';
 
-import { Trash2, User } from 'lucide-react';
+import { Film, LogIn, MapPin, Trash2, User } from 'lucide-react';
 import { Link } from 'react-router';
 import { toast } from 'sonner';
 
@@ -100,9 +100,10 @@ export const Header = () => {
                         <li>
                             <Link
                                 to={ROUTES.MOVIES}
-                                className="text-lg font-semibold"
+                                className="text-lg font-semibold flex items-center gap-1.5"
                             >
-                                Movies
+                                <Film className="size-5" />
+                                <span className="hidden sm:inline">Movies</span>
                             </Link>
                         </li>
                     </NavigationMenuLink>
@@ -110,9 +111,12 @@ export const Header = () => {
                         <li>
                             <Link
                                 to={ROUTES.CINEMAS}
-                                className="text-lg font-semibold"
+                                className="text-lg font-semibold flex items-center gap-1.5"
                             >
-                                Cinemas
+                                <MapPin className="size-5" />
+                                <span className="hidden sm:inline">
+                                    Cinemas
+                                </span>
                             </Link>
                         </li>
                     </NavigationMenuLink>
@@ -121,9 +125,12 @@ export const Header = () => {
                             <li>
                                 <Link
                                     to={ROUTES.LOGIN}
-                                    className="text-lg font-semibold"
+                                    className="text-lg font-semibold flex items-center gap-1.5"
                                 >
-                                    Login
+                                    <LogIn className="size-5" />
+                                    <span className="hidden sm:inline">
+                                        Login
+                                    </span>
                                 </Link>
                             </li>
                         </NavigationMenuLink>

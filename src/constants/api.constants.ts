@@ -8,6 +8,11 @@
  */
 export const API_ROUTES = {
     /**
+     * Endpoint for sending contact/query messages.
+     */
+    CONTACT_US: '/contact-us/',
+
+    /**
      * Routes related to user authentication and profile management.
      */
     USERS: {

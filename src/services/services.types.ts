@@ -363,3 +363,8 @@ export type Ticket = {
      */
     show_time: string;
 };
+
+export type ContactUsRequest = {
+    email: string;
+    query: string;
+};

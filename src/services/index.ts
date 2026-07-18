@@ -22,6 +22,7 @@ export {
     useTicketsInfiniteQuery,
     usePastBookingsInfiniteQuery,
     useCancelTicketMutation,
+    useContactUsMutation,
 } from './services';
 
 export type {
@@ -33,4 +34,5 @@ export type {
     Language,
     Movie,
     PaginatedQueryResponse,
+    ContactUsRequest,
 } from './services.types';
