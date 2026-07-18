@@ -105,8 +105,7 @@ export default defineConfig([
                         '@/*': './src/*',
                     },
                     extensions: ['.ts', '.tsx'],
-
-},
+                },
             },
         },
     },
