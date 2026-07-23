@@ -1,5 +1,7 @@
 # BookMyShow Frontend
 
+[Visit The Backend Code](https://github.com/lav5588/BookMyShow-backend)
+
 A responsive movie discovery and ticket-booking frontend built with React, TypeScript, and Vite. It lets users browse movies and cinemas, filter show listings, manage bookings, and access account-related screens.
 
 ## Features
@@ -151,3 +153,14 @@ npm run build
 ```
 
 The generated files are placed in `dist/`. Production builds minify JavaScript, remove `console` calls, hide source maps, and optimize supported raster image assets.
+
+## Previews Of the Application
+
+![alt text](public/app-preview/1.png)
+![alt text](public/app-preview/2.png)
+![alt text](public/app-preview/3.png)
+![alt text](public/app-preview/4.png)
+![alt text](public/app-preview/5.png)
+![alt text](public/app-preview/6.png)
+![alt text](public/app-preview/7.png)
+![alt text](public/app-preview/8.png)
