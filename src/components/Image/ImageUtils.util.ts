@@ -14,7 +14,7 @@ export const resolveValue = (
         if (value != null) return value;
     }
 
-    return '100%';
+    return undefined;
 };
 
-export const rem = (v?: number) => (v == null ? undefined : `${v * 0.25}rem`);
+export const rem = (v?: number) => (!v ? undefined : `${v * 0.25}rem`);

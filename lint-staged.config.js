@@ -1,5 +1,5 @@
-/* This configuration applies Prettier formatting and ESLint linting to all staged .ts and .tsx files */
+// lint-staged.config.js
 export default {
-    'src/**/*.{ts,tsx}': eslint .,
-    '*': prettier --write ./,
+    'src/**/*.{ts,tsx}': 'eslint --fix',
+    '*.{ts,tsx,js,jsx,json,css,md,yml,yaml}': 'prettier --write',
 };

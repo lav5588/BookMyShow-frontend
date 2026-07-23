@@ -5,6 +5,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 import type {
     Cinema,
+    ContactUsRequest,
     Genre,
     Language,
     Location,
@@ -440,6 +441,17 @@ export const api = createApi({
                 },
             },
         }),
+
+        /**
+         * Submit a contact-us query
+         */
+        contactUs: builder.mutation<{ message: string }, ContactUsRequest>({
+            query: (data) => ({
+                url: API_ROUTES.CONTACT_US,
+                method: 'POST',
+                body: data,
+            }),
+        }),
     }),
 });
 
@@ -468,4 +480,5 @@ export const {
     useTicketsInfiniteQuery,
     usePastBookingsInfiniteQuery,
     useCancelTicketMutation,
+    useContactUsMutation,
 } = api;

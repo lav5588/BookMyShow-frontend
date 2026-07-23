@@ -1,19 +1,46 @@
 import { type FormEvent, useState } from 'react';
 
+import { toast } from 'sonner';
+
 import { Image, TypographyH1, TypographyH2, TypographyP } from '@/components';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useContactUsMutation } from '@/services';
 
 import { contactUsConfig } from './ContactUsconfig.config';
 
 export const ContactUs = () => {
+    const [contactUs, { isLoading }] = useContactUsMutation();
     const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        setIsSubmitted(true);
-        event.currentTarget.reset();
+        const formData = new FormData(event.currentTarget);
+        const email = formData.get('email') as string;
+        const query = formData.get('query') as string;
+
+        try {
+            await contactUs({ email, query }).unwrap();
+            setIsSubmitted(true);
+            toast.success('Your query has been submitted successfully.');
+        } catch (err) {
+            const error = err as {
+                status?: string | number;
+                originalStatus?: number;
+            };
+            // Check if it's a parsing error from a successful response (e.g. empty body or plain text)
+            if (
+                error?.status === 'PARSING_ERROR' &&
+                (error?.originalStatus === 200 || error?.originalStatus === 201)
+            ) {
+                setIsSubmitted(true);
+                toast.success('Your query has been submitted successfully.');
+                event.currentTarget.reset();
+            } else {
+                toast.error('Failed to submit query. Please try again.');
+            }
+        }
     };
 
     return (
@@ -110,7 +137,9 @@ export const ContactUs = () => {
 
                 <form
                     className="space-y-5 rounded-xl border bg-card p-6 text-card-foreground"
-                    onSubmit={handleSubmit}
+                    onSubmit={(event) => {
+                        void handleSubmit(event);
+                    }}
                 >
                     <div className="space-y-2">
                         <TypographyH2>Send us a query</TypographyH2>
@@ -142,7 +171,9 @@ export const ContactUs = () => {
                         />
                     </div>
 
-                    <Button type="submit">Send query</Button>
+                    <Button type="submit" disabled={isLoading}>
+                        {isLoading ? 'Sending...' : 'Send query'}
+                    </Button>
                     {isSubmitted && (
                         <TypographyP className="text-sm text-primary">
                             Thanks for reaching out. Your query has been
