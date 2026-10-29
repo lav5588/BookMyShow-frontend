@@ -10,10 +10,11 @@ We use feature branches off `main` and pull requests with automated continuous i
 
 ### Branch Naming Conventions
 
-- **Feature Branches**: `feature/<feature-name>` or sprint identifiers like `ly_bms_02`
-- **Bug Fix Branches**: `fix/<bug-description>`
-- **Refactoring Branches**: `refactor/<target-area>`
-- **Chore / Maintenance**: `chore/<task-name>`
+Branches follow the format `<initials>_<project>_<task-number>` (e.g., `ly_bms_02`):
+
+- **`ly`**: First letters of the contributor's first and last name (e.g., **L**av **Y**adav).
+- **`bms`**: Short form of the project name (**B**ook**M**y**S**how).
+- **`02`**: Two-digit task number (e.g., `00`, `01`, `02`).
 
 ### Pull Request Workflow
 
@@ -24,7 +25,7 @@ We use feature branches off `main` and pull requests with automated continuous i
     ```
 2. Create and switch to your feature branch:
     ```bash
-    git checkout -b feature/movie-seat-matrix
+    git checkout -b ly_bms_02
     ```
 3. Make atomic, well-tested commits.
 4. Run all local quality checks before pushing:
