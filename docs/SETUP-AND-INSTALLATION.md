@@ -151,31 +151,3 @@ To test the production build with asset optimization, Terser minification, and b
 | `npm run prettier`     | `npx prettier --check .` | Verifies code formatting against project standards.     |
 | `npm run prettier:fix` | `npx prettier --write .` | Formats all files according to Prettier configuration.  |
 | `npm run prepare`      | `husky`                  | Installs Husky pre-commit hooks.                        |
-
----
-
-## 7. Troubleshooting & Common Issues
-
-### Issue 1: Port 3000 Already in Use
-
-**Symptom**: Error indicating port `3000` is occupied.  
-**Solution**: Change `PORT` in `.env` to an alternative port (e.g., `PORT=3001`), or stop the existing process holding port 3000.
-
-### Issue 2: CORS / Network Error When Fetching Data
-
-**Symptom**: Console displays `Cross-Origin Request Blocked` or failed API requests.  
-**Solution**:
-
-1. Confirm the backend API is running and reachable at the URL in `VITE_BASE_URL`.
-2. Ensure the backend has configured CORS headers allowing requests from `http://localhost:3000` with credentials support (`Access-Control-Allow-Credentials: true`).
-
-### Issue 3: Line Ending / Prettier Mismatch on Windows
-
-**Symptom**: Prettier reports `Delete ␍` or end-of-line CRLF warnings.  
-**Solution**:
-Configure Git to check out files with LF line endings or run:
-
-```bash
-git config core.autocrlf false
-npm run prettier:fix
-```
