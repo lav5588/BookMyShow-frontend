@@ -43,11 +43,3 @@ In accordance with GitHub CODEOWNERS syntax, the primary owners for each area of
 /docs/                                  @lav5588
 /README.md                              @lav5588
 ```
-
----
-
-## Review & Contribution Responsibilities
-
-1. **Pull Request Sign-off**: All PRs submitted to `main` require at least one approving review from a code owner prior to merging.
-2. **Quality Gates**: All automated CI checks (ESLint, Prettier, TypeScript compile, production build) must pass before code owner review.
-3. **Architectural Alterations**: Any modifications affecting global state (`src/store/`), base API architecture (`src/services/`), or routing layouts (`src/router/`, `src/layouts/`) require direct review from `@lav5588`.
