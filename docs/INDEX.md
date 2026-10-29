@@ -88,18 +88,3 @@ Ownership, team members, and contribution guidelines:
 | **Linting & Formatting**   | [`CODING-STANDARDS.md`](./CODING-STANDARDS.md)             | ESLint, Prettier, Husky, lint-staged       |
 | **Troubleshooting Errors** | [`ERROR-HANDLING.md`](./ERROR-HANDLING.md)                 | ErrorBoundary, Sonner toast, fallback UI   |
 | **Accessibility**          | [`ACCESSIBILITY.md`](./ACCESSIBILITY.md)                   | ARIA, Radix UI primitives, keyboard nav    |
-
----
-
-## How to Contribute to Documentation
-
-If you identify missing details, outdated endpoints, or areas that could be clearer:
-
-1. Create a new branch from `main`.
-2. Edit or add markdown files within the `docs/` folder.
-3. Update links in [`INDEX.md`](./INDEX.md) and [`README.md`](../README.md) if adding new files.
-4. Run formatting checks:
-    ```bash
-    npm run prettier
-    ```
-5. Submit a pull request following the repository's PR template.
