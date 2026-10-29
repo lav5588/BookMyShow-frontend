@@ -4,6 +4,34 @@
 
 A responsive movie discovery and ticket-booking frontend built with React, TypeScript, and Vite. It lets users browse movies and cinemas, filter show listings, manage bookings, and access account-related screens.
 
+---
+
+## Documentation
+
+Explore our comprehensive documentation suite in the [`docs/`](docs/) directory:
+
+| Document                                                   | Description                                                              |
+| :--------------------------------------------------------- | :----------------------------------------------------------------------- |
+| [**Documentation Index**](docs/INDEX.md)                   | Central hub and navigation portal for all project documentation.         |
+| [**Architecture Overview**](docs/ARCHITECTURE.md)          | System design, component layering, data flow, and build pipeline.        |
+| [**Setup & Installation**](docs/SETUP-AND-INSTALLATION.md) | Step-by-step setup guide for Windows, macOS, and Linux.                  |
+| [**Development Guide**](docs/DEVELOPMENT-GUIDE.md)         | Daily developer workflows, container patterns, and pre-PR checklist.     |
+| [**Project Structure**](docs/PROJECT-STRUCTURE.md)         | Complete directory tree and file naming conventions.                     |
+| [**Requirements Specification**](docs/REQUIREMENTS.md)     | Detailed functional and non-functional specifications.                   |
+| [**Routing Architecture**](docs/ROUTING.md)                | React Router 7 setup, layout hierarchy, and route parameters.            |
+| [**State Management**](docs/STATE-MANAGEMENT.md)           | Redux Toolkit store, `authSlice`, and RTK Query caching policies.        |
+| [**API Integration Reference**](docs/API-INTEGRATION.md)   | Complete catalog of RTK Query endpoints, types, and polling intervals.   |
+| [**Authentication & Sessions**](docs/AUTHENTICATION.md)    | JWT auth lifecycle, token refresh, and user profile management.          |
+| [**Environment Variables**](docs/ENVIRONMENT-VARIABLES.md) | Configuration guide for `PORT`, `VITE_BASE_URL`, and security practices. |
+| [**Error Handling Strategy**](docs/ERROR-HANDLING.md)      | Route error boundaries, 404 fallbacks, and user error notifications.     |
+| [**Accessibility (a11y) Guide**](docs/ACCESSIBILITY.md)    | WCAG 2.1 AA standards, Radix primitives, and keyboard navigation.        |
+| [**Coding Standards**](docs/CODING-STANDARDS.md)           | TypeScript guidelines, ESLint flat config, and Prettier rules.           |
+| [**Authors & Maintainers**](docs/AUTHORS.md)               | Creator, lead maintainer, and architectural ownership details.           |
+| [**Contributors Guide**](docs/CONTRIBUTORS.md)             | Contribution lifecycle, community guidelines, and hall of fame.          |
+| [**Code Owners**](docs/CODE_OWNERS.md)                     | GitHub CODEOWNERS definitions and domain ownership mappings.             |
+
+---
+
 ## Features
 
 - Browse current, latest, and upcoming movies
@@ -30,7 +58,7 @@ A responsive movie discovery and ticket-booking frontend built with React, TypeS
 
 - Node.js `v22.19.0` (see [`.nvmrc`](.nvmrc))
 - npm
-- A running BookMyShow backend API
+- A running BookMyShow backend API (see [SETUP-AND-INSTALLATION.md](docs/SETUP-AND-INSTALLATION.md))
 
 ## Getting started
 
@@ -91,6 +119,8 @@ A responsive movie discovery and ticket-booking frontend built with React, TypeS
 
 ## Routes
 
+For detailed route documentation and parameters, see [docs/ROUTING.md](docs/ROUTING.md).
+
 | Route                | Purpose                                             |
 | -------------------- | --------------------------------------------------- |
 | `/`                  | Home page with movie and cinema discovery sections. |
@@ -109,6 +139,8 @@ A responsive movie discovery and ticket-booking frontend built with React, TypeS
 
 ## Project structure
 
+For an in-depth breakdown of directories, files, and architectural roles, see [docs/PROJECT-STRUCTURE.md](docs/PROJECT-STRUCTURE.md).
+
 ```text
 src/
 ├── assets/         # Images, fonts, and SVG illustrations
@@ -125,6 +157,8 @@ src/
 ```
 
 ## Environment variables
+
+For detailed security guidelines and configuration examples, see [docs/ENVIRONMENT-VARIABLES.md](docs/ENVIRONMENT-VARIABLES.md).
 
 | Variable        | Required | Description                                |
 | --------------- | -------- | ------------------------------------------ |
